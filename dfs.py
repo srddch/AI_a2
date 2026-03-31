@@ -27,4 +27,4 @@ def search(graph, coords, start, goals):
         for neighbor, cost in neighbors:
             stack.append(Node(neighbor, current))
 
-    return None, nodes_expanded, []
+    return None, nodes_expanded, [] #第2版

@@ -7,8 +7,8 @@ Assignment2/
 │
 ├── bfs.py             # BFS（已实现）
 ├── dfs.py             # DFS（已实现）
-├── gbfs.py            # GBFS(以实现)
-├── astar.py           # AS（以实现）
+├── gbfs.py            # GBFS(已实现)
+├── astar.py           # AS（已实现）
 ├── cus1.py            # 待实现
 ├── cus2.py            # 待实现
 

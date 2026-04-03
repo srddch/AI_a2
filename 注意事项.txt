@@ -41,6 +41,3 @@ python search.py <输入文件> <算法名称>
 
 # 运行 GBFS
 python search.py PathFinder-test.txt GBFS
-
-# 运行 A*
-python search.py PathFinder-test.txt AS

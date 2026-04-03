@@ -7,8 +7,8 @@ Assignment2/
 │
 ├── bfs.py             # BFS（已实现）
 ├── dfs.py             # DFS（已实现）
-├── gbfs.py            # 待实现
-├── astar.py           # 待实现
+├── gbfs.py            # GBFS(以实现)
+├── astar.py           # AS（以实现）
 ├── cus1.py            # 待实现
 ├── cus2.py            # 待实现
 
@@ -38,3 +38,9 @@ Node类：统一使用 node.py 中的类
 
 运行方式：
 python search.py <输入文件> <算法名称>
+
+# 运行 GBFS
+python search.py PathFinder-test.txt GBFS
+
+# 运行 A*
+python search.py PathFinder-test.txt AS

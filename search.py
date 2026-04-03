@@ -3,7 +3,8 @@ from parser import parse_file
 
 from bfs import search as bfs
 from dfs import search as dfs
-
+from gbfs import search as gbfs
+from astar import search as astar
 
 
 def main():
@@ -22,6 +23,12 @@ def main():
     elif method == "DFS":
         goal, nodes_expanded, path = dfs(graph, coords, origin, goals)
 
+    elif method == "GBFS":
+        goal, nodes_expanded, path = gbfs(graph, coords, origin, goals)
+    
+    elif method == "AS":
+        goal, nodes_expanded, path = astar(graph, coords, origin, goals)
+   
     else:
         print("Method not implemented")
         return

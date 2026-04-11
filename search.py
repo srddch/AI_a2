@@ -5,6 +5,7 @@ from bfs import search as bfs
 from dfs import search as dfs
 from gbfs import search as gbfs
 from astar import search as astar
+from cus2 import search as cus2
 
 
 def main():
@@ -29,6 +30,8 @@ def main():
     elif method == "AS":
         goal, nodes_expanded, path = astar(graph, coords, origin, goals)
    
+    elif method == "CUS2":
+        goal, nodes_expanded, path = cus2(graph, coords, origin, goals)
     else:
         print("Method not implemented")
         return

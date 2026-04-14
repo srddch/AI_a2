@@ -42,7 +42,7 @@ def main():
 
     print(f"{filename} {method}")
     print(f"{goal} {nodes_expanded}")
-    print(" ".join(map(str, path)))
+    print(f"[{','.join(map(str, path))}]")
 
 
 if __name__ == "__main__":

@@ -6,8 +6,9 @@ def search(graph, coords, start, goals):
     stack = []
     visited = set()
 
-    stack.append(Node(start))
-    nodes_expanded = 0
+    start_node = Node(start)
+    stack.append(start_node)
+    nodes_created = 1
 
     while stack:
         current = stack.pop()
@@ -17,14 +18,18 @@ def search(graph, coords, start, goals):
 
         visited.add(current.state)
 
-        nodes_expanded += 1
-
         if current.state in goals:
-            return current.state, nodes_expanded, reconstruct_path(current)
+            return current.state, nodes_created, reconstruct_path(current)
+
+        if current.state not in graph:
+            continue
 
         neighbors = sorted(graph[current.state], key=lambda x: x[0], reverse=True)
 
-        for neighbor, cost in neighbors:
-            stack.append(Node(neighbor, current))
+        for neighbor_id, cost in neighbors:
+            if neighbor_id not in visited:
+                child_node = Node(neighbor_id, current)
+                nodes_created += 1
+                stack.append(child_node)
 
-    return None, nodes_expanded, [] #第2版
+    return None, nodes_created, []

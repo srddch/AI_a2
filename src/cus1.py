@@ -40,7 +40,9 @@ def search(graph, coords, start, goals):
                 if neighbor in goal_visited:
                     path1 = reconstruct_path(child)
                     path2 = reconstruct_path(goal_visited[neighbor])
-                    return neighbor, nodes_expanded, path1 + path2[::-1][1:]
+                    path = path1 + path2[::-1][1:]
+
+                    return path[-1], nodes_expanded, path
 
                 start_visited[neighbor] = child
                 start_queue.append(child)
@@ -58,7 +60,9 @@ def search(graph, coords, start, goals):
                 if neighbor in start_visited:
                     path1 = reconstruct_path(start_visited[neighbor])
                     path2 = reconstruct_path(child)
-                    return neighbor, nodes_expanded, path1 + path2[::-1][1:]
+                    path = path1 + path2[::-1][1:]
+
+                    return path[-1], nodes_expanded, path
 
                 goal_visited[neighbor] = child
                 goal_queue.append(child)

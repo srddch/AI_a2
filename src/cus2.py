@@ -33,19 +33,20 @@ def search(graph, coords, start, goals):
 
     
     
-    nodes_expanded = 0  #originally no nodes are expanded
+     
    
     start_node = Node(start, None, 0)
+    nodes_created = 1 # Count the start node as created
     start_node.h = heuristic(start, goals, coords) / lmax
     start_node.f = start_node.cost + start_node.h
     threshold = start_node.f
     def dfs_limited(node, threshold, path_states):
-        nonlocal nodes_expanded
+        nonlocal nodes_created
 
         if node.f > threshold:
             return node.f
         
-        nodes_expanded += 1
+        
 
         if node.state in goals:
             return node
@@ -59,6 +60,7 @@ def search(graph, coords, start, goals):
         for neighbor, _ in neighbors:
             if neighbor not in path_states:
                 child = Node(neighbor, node, node.cost + 1)
+                nodes_created += 1
                 child.h = heuristic(neighbor, goals, coords) / lmax
                 child.f = child.cost + child.h
 
@@ -79,10 +81,10 @@ def search(graph, coords, start, goals):
         result = dfs_limited(start_node, threshold, path_states)
 
         if isinstance(result, Node):
-            return result.state, nodes_expanded, reconstruct_path(result)
+            return result.state, nodes_created, reconstruct_path(result)
         
         if result == float('inf'):
-            return None, nodes_expanded, []  # No solution found
+            return None, nodes_created, []  # No solution found
         
         threshold = result
         

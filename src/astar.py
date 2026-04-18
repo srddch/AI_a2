@@ -10,26 +10,26 @@ def search(graph, coords, start, goals):
     counter = 0
     heap = [(start_node.f, counter, start, start_node)]
     visited = set()
-    nodes_expanded = 0
+    nodes_created = 1  # 起始节点已创建
 
     while heap:
         f_val, _, state, node = heapq.heappop(heap)
         if state in visited:
             continue
         visited.add(state)
-        nodes_expanded += 1
 
         if state in goals:
-            return state, nodes_expanded, reconstruct_path(node)
+            return state, nodes_created, reconstruct_path(node)
 
         neighbors = sorted(graph[state], key=lambda x: x[0])
         for neighbor, cost in neighbors:
             if neighbor not in visited:
                 counter += 1
                 child = Node(neighbor, node)
+                nodes_created += 1  # 子节点创建时计数
                 child.cost = node.cost + cost
                 child.h = heuristic(neighbor, goals, coords)
                 child.f = child.cost + child.h
                 heapq.heappush(heap, (child.f, counter, neighbor, child))
 
-    return None, nodes_expanded, []
+    return None, nodes_created, []
